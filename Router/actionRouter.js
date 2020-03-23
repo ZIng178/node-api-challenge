@@ -52,4 +52,17 @@ actiondata.remove(id)
 })
 })
 
+router.put("/:id", (req,res)=>{
+    const changes=req.body
+    const {id}=req.params;
+    actiondata.update(id,changes)
+    .then(actions=>{
+        if (actions){
+            res.status(200).json(actions)
+        }else{
+            res.status(404).json({message: " Could not update changes"})
+        }
+    })
+})
+
 module.exports=router
