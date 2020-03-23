@@ -13,4 +13,16 @@ router.get("/", (req,res) =>{
     })
 })
 
+router.post("/", (req,res)=>{
+    const body=req.body
+    actiondata.insert(body)
+    .then(actions=>{
+        res.status(201).json({actions})
+    })
+    .catch(error=>{
+        console.log(error)
+        res.status(500).json({message :"Error posting actions"})
+    })
+})
+
 module.exports=router
